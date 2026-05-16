@@ -33,8 +33,8 @@ fun CardItem() {
         modifier = Modifier
             .clip(RoundedCornerShape(11.dp))
             .background(TaskTheme.colors.neutral40)
-            .width(453.dp)
-            .height(277.dp)
+            .width(345.dp)
+            .height(240.dp)
             .padding(21.dp)
     ) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
