@@ -1,7 +1,6 @@
-package com.example.taskmanagement.ui.screens.tasklist
+package com.example.taskmanagement.features.tasklist
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,27 +14,26 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.taskmanagement.R
-import com.example.taskmanagement.ui.components.CardItem
-import com.example.taskmanagement.ui.components.TopBar
-import com.example.taskmanagement.ui.theme.TaskTheme
-import com.example.taskmanagement.ui.theme.TaskManagementTheme
+import com.example.taskmanagement.core.ui.components.CardItem
+import com.example.taskmanagement.core.ui.components.TopBar
+import com.example.taskmanagement.core.ui.theme.TaskTheme
+import com.example.taskmanagement.core.ui.theme.TaskManagementTheme
 
 @Composable
-fun TaskListScreen() {
+fun TaskListScreen(onNavigateToCreateTask: () -> Unit) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = TaskTheme.colors.background,
         contentColor = TaskTheme.colors.neutral10,
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { print("Hello") },
+                onClick = onNavigateToCreateTask,
                 containerColor = TaskTheme.colors.primary40,
                 contentColor = TaskTheme.colors.neutral10,
                 shape = CircleShape
@@ -117,10 +115,10 @@ fun TaskListScreen() {
     }
 }
 
-@Preview(showSystemUi = true, showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun TaskListPreview() {
+@Preview(showSystemUi = true, showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+fun TaskListScreenPreview() {
     TaskManagementTheme(darkTheme = true) {
-        TaskListScreen()
+        TaskListScreen {}
     }
 }

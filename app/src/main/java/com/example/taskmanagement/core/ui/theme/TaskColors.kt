@@ -1,4 +1,4 @@
-package com.example.taskmanagement.ui.theme
+package com.example.taskmanagement.core.ui.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color

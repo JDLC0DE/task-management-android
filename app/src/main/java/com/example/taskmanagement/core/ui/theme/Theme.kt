@@ -1,11 +1,10 @@
-package com.example.taskmanagement.ui.theme
+package com.example.taskmanagement.core.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.example.taskmanagement.ui.theme.TaskColors
 
 val LightTaskColors = TaskColors(
     Neutral1,

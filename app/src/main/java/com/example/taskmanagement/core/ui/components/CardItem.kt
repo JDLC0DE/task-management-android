@@ -1,4 +1,4 @@
-package com.example.taskmanagement.ui.components
+package com.example.taskmanagement.core.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.taskmanagement.R
-import com.example.taskmanagement.ui.theme.TaskTheme
+import com.example.taskmanagement.core.ui.theme.TaskTheme
 
 @Composable
 fun CardItem() {
