@@ -1,20 +1,20 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
+    id("com.apollographql.apollo") version "5.0.0"
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
     namespace = "com.example.taskmanagement"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.taskmanagement"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -31,11 +31,25 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true
+    }
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+apollo {
+    service("service") {
+        packageName.set("com.example.taskmanagement.graphql")
+        introspection {
+            endpointUrl.set("https://syn-api-prod.herokuapp.com/graphql")
+            schemaFile.set(file("src/main/graphql/schema.graphqls"))
+        }
     }
 }
 
@@ -48,7 +62,11 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(platform(libs.androidx.compose.bom.v20260401))
     implementation(libs.coil.compose)
+    implementation(libs.apollo.runtime)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.android)
+    ksp(libs.dagger.hilt.android.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)

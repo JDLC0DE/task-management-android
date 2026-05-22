@@ -1,0 +1,23 @@
+query GetTasks($input: FilterTaskInput!) {
+    tasks(input: $input) {
+        id
+        name
+        pointEstimate
+        tags
+        dueDate
+        status
+        assignee {
+            id
+            fullName
+            email
+            avatar
+        }
+        position
+        creator {
+            id
+            fullName
+            email
+            avatar
+        }
+    }
+}

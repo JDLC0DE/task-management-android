@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -19,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.taskmanagement.R
 import com.example.taskmanagement.core.ui.components.CardItem
 import com.example.taskmanagement.core.ui.components.TopBar
@@ -26,7 +29,21 @@ import com.example.taskmanagement.core.ui.theme.TaskTheme
 import com.example.taskmanagement.core.ui.theme.TaskManagementTheme
 
 @Composable
-fun TaskListScreen(onNavigateToCreateTask: () -> Unit) {
+fun TaskListScreen(
+    onNavigateToCreateTask: () -> Unit,
+    viewModel: TaskListViewModel = hiltViewModel()
+) {
+    TaskListContent(
+        state = viewModel.state,
+        onNavigateToCreateTask = onNavigateToCreateTask
+    )
+}
+
+@Composable
+fun TaskListContent(
+    state: TaskListUiState,
+    onNavigateToCreateTask: () -> Unit
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = TaskTheme.colors.background,
@@ -58,16 +75,17 @@ fun TaskListScreen(onNavigateToCreateTask: () -> Unit) {
                 ) {
 
                     Text(
-                        text = "Working (02)",
+                        text = "Working (${String.format("%02d", state.tasks.size)})",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
                     )
 
-                    Column(
+                    LazyColumn(
                         verticalArrangement = Arrangement.spacedBy(21.dp)
                     ) {
-                        CardItem()
-                        CardItem()
+                        items(state.tasks) { task ->
+                            CardItem()
+                        }
                     }
                 }
             }
@@ -119,6 +137,9 @@ fun TaskListScreen(onNavigateToCreateTask: () -> Unit) {
 @Preview(showSystemUi = true, showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun TaskListScreenPreview() {
     TaskManagementTheme(darkTheme = true) {
-        TaskListScreen {}
+        TaskListContent(
+            state = TaskListUiState(),
+            onNavigateToCreateTask = {}
+        )
     }
 }

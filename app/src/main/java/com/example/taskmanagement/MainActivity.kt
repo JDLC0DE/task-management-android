@@ -7,14 +7,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.taskmanagement.core.navigation.AppNavigation
 import com.example.taskmanagement.core.ui.theme.TaskManagementTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(
-                // Aquí puedes definir el color de fondo si quieres uno específico,
-                // pero .dark() por defecto hará que los ICONOS sean BLANCOS.
                 android.graphics.Color.TRANSPARENT
             )
         )
