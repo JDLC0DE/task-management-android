@@ -27,7 +27,7 @@ import com.example.taskmanagement.R
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 
 @Composable
-fun CardItem() {
+fun CardItem(title: String) {
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
@@ -39,7 +39,7 @@ fun CardItem() {
     ) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(
-                "Card Item",
+                text = title,
                 color = TaskTheme.colors.neutral10,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
@@ -129,6 +129,6 @@ fun CardItemPreview() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        CardItem()
+        CardItem(title = "Card Item")
     }
 }

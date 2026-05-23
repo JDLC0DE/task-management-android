@@ -2,31 +2,25 @@ package com.example.taskmanagement.features.tasklist
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.taskmanagement.R
-import com.example.taskmanagement.core.ui.components.CardItem
 import com.example.taskmanagement.core.ui.components.TopBar
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 import com.example.taskmanagement.core.ui.theme.TaskManagementTheme
+import com.example.taskmanagement.features.tasklist.components.TaskColumn
 
 @Composable
 fun TaskListScreen(
@@ -70,64 +64,15 @@ fun TaskListContent(
         ) {
 
             item {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(21.dp)
-                ) {
-
-                    Text(
-                        text = "Working (${String.format("%02d", state.tasks.size)})",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(21.dp)
-                    ) {
-                        items(state.tasks) { task ->
-                            CardItem()
-                        }
-                    }
-                }
+                TaskColumn(title = "Working", tasks = state.tasks.working)
             }
 
             item {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(21.dp)
-                ) {
-
-                    Text(
-                        text = "In Progress (03)",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(21.dp)
-                    ) {
-                        CardItem()
-                        CardItem()
-                        CardItem()
-                    }
-                }
+                TaskColumn(title = "In Progress", tasks = state.tasks.inProgress)
             }
 
             item {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(21.dp)
-                ) {
-
-                    Text(
-                        text = "Done (01)",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(21.dp)
-                    ) {
-                        CardItem()
-                    }
-                }
+                TaskColumn(title = "Done", tasks = state.tasks.done)
             }
         }
     }
