@@ -47,7 +47,7 @@ fun TaskColumn(
                             onTaskMoved(data as String, target)
                         }
                     ) {
-                        CardItem(title = task.name)
+                        CardItem(title = task.name, point = task.pointEstimate.label, avatarUrl = task.assignee.avatar, tags = task.tags, dueDate = task.dueDate)
                     }
                 }
             }

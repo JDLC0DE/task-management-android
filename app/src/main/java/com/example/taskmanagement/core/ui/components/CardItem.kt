@@ -25,9 +25,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.taskmanagement.R
 import com.example.taskmanagement.core.ui.theme.TaskTheme
+import com.example.taskmanagement.domain.model.TaskTag
+import java.time.LocalDate
 
 @Composable
-fun CardItem(title: String) {
+fun CardItem(title: String, point: String, avatarUrl: String, tags: List<TaskTag>, dueDate: String) {
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
@@ -58,21 +60,26 @@ fun CardItem(title: String) {
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(
-                "3 Pts",
+                "$point Pts",
                 color = TaskTheme.colors.neutral10,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
-            Tag("Today", type = TagType.WHITE, icon = painterResource(R.drawable.ic_alarm))
+            Tag(title = dueDate, type = TagType.WHITE, icon = painterResource(R.drawable.ic_alarm))
         }
 
         Row(horizontalArrangement = Arrangement.spacedBy(11.dp)) {
-            Tag("IOS App", type = TagType.SUCCESS)
-            Tag("Android", type = TagType.WARNING)
+            tags.forEach { tag ->
+                Tag(title = tag.title, type = tag.type)
+            }
         }
 
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Avatar("https://picsum.photos/200")
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Avatar(avatarUrl)
 
             Row(horizontalArrangement = Arrangement.spacedBy(21.dp)) {
                 IconButton(
@@ -88,7 +95,12 @@ fun CardItem(title: String) {
                 }
 
                 Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                    Text(text = "5", fontSize = 20.sp, fontWeight = FontWeight.Normal, color = TaskTheme.colors.neutral10)
+                    Text(
+                        text = "5",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = TaskTheme.colors.neutral10
+                    )
                     IconButton(
                         onClick = { /*TODO*/ },
                         modifier = Modifier.size(21.dp),
@@ -103,7 +115,12 @@ fun CardItem(title: String) {
                 }
 
                 Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                    Text(text = "3", fontSize = 20.sp, fontWeight = FontWeight.Normal, color = TaskTheme.colors.neutral10)
+                    Text(
+                        text = "3",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = TaskTheme.colors.neutral10
+                    )
                     IconButton(
                         onClick = { /*TODO*/ },
                         modifier = Modifier.size(21.dp),
@@ -125,10 +142,21 @@ fun CardItem(title: String) {
 @Composable
 fun CardItemPreview() {
     Column(
-        modifier = Modifier.fillMaxSize().padding(10.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        CardItem(title = "Card Item")
+        CardItem(
+            title = "Card Item",
+            point = "3",
+            avatarUrl = "https://picsum.photos/100",
+            tags = listOf(
+                TaskTag("IOS APP", TagType.SUCCESS),
+                TaskTag("ANDROID", TagType.WARNING)
+            ),
+            dueDate = LocalDate.now().toString()
+        )
     }
 }
