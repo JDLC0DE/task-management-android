@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.taskmanagement.core.ui.components.CardItem
 import com.example.taskmanagement.core.ui.components.DragTarget
 import com.example.taskmanagement.core.ui.components.DropTarget
 import com.example.taskmanagement.domain.model.Task
@@ -47,7 +46,7 @@ fun TaskColumn(
                             onTaskMoved(data as String, target)
                         }
                     ) {
-                        CardItem(title = task.name, point = task.pointEstimate.label, avatarUrl = task.assignee.avatar, tags = task.tags, dueDate = task.dueDate)
+                        TaskCard(title = task.name, point = task.pointEstimate.label, avatarUrl = task.assignee.avatar, tags = task.tags, dueDate = task.dueDate)
                     }
                 }
             }

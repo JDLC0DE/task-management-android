@@ -1,4 +1,4 @@
-package com.example.taskmanagement.core.ui.components
+package com.example.taskmanagement.features.tasklist.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,12 +24,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.taskmanagement.R
+import com.example.taskmanagement.core.ui.components.Avatar
+import com.example.taskmanagement.core.ui.components.MoreOptions
+import com.example.taskmanagement.core.ui.components.Tag
+import com.example.taskmanagement.core.ui.components.TagType
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 import com.example.taskmanagement.domain.model.TaskTag
 import java.time.LocalDate
 
 @Composable
-fun CardItem(title: String, point: String, avatarUrl: String, tags: List<TaskTag>, dueDate: String) {
+fun TaskCard(title: String, point: String, avatarUrl: String, tags: List<TaskTag>, dueDate: String) {
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
@@ -46,16 +50,7 @@ fun CardItem(title: String, point: String, avatarUrl: String, tags: List<TaskTag
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
-            IconButton(
-                onClick = { /*TODO*/ },
-                modifier = Modifier.size(32.dp),
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_more),
-                    contentDescription = "options",
-                    tint = TaskTheme.colors.neutral20
-                )
-            }
+            MoreOptions()
         }
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
@@ -148,7 +143,7 @@ fun CardItemPreview() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        CardItem(
+        TaskCard(
             title = "Card Item",
             point = "3",
             avatarUrl = "https://picsum.photos/100",
