@@ -4,8 +4,10 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Optional
 import com.example.taskmanagement.domain.model.TaskStatus
 import com.example.taskmanagement.graphql.GetTasksQuery
+import com.example.taskmanagement.graphql.UpdateTaskMutation
 import com.example.taskmanagement.graphql.type.FilterTaskInput
 import com.example.taskmanagement.graphql.type.Status
+import com.example.taskmanagement.graphql.type.UpdateTaskInput
 import javax.inject.Inject
 
 class TaskRemoteDataSource @Inject constructor(
@@ -21,5 +23,16 @@ class TaskRemoteDataSource @Inject constructor(
             .execute()
 
         return response.data?.tasks ?: emptyList()
+    }
+
+    suspend fun updateTaskStatus(taskId: String, status: TaskStatus) {
+        apolloClient.mutation(
+            UpdateTaskMutation(
+                UpdateTaskInput(
+                    id = taskId,
+                    status = Optional.present(Status.valueOf(status.name))
+                )
+            )
+        ).execute()
     }
 }

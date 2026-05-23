@@ -16,4 +16,8 @@ class TaskRepositoryImpl @Inject constructor(
             .getTasks(status)
             .map { it.toDomain() }
     }
+
+    override suspend fun updateTaskStatus(taskId: String, status: TaskStatus) {
+        remoteDataSource.updateTaskStatus(taskId, status)
+    }
 }

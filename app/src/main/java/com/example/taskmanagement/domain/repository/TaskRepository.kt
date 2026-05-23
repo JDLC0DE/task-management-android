@@ -5,4 +5,5 @@ import com.example.taskmanagement.domain.model.TaskStatus
 
 interface TaskRepository {
     suspend fun getTasks(status: TaskStatus? = null): List<Task>
+    suspend fun updateTaskStatus(taskId: String, status: TaskStatus)
 }
