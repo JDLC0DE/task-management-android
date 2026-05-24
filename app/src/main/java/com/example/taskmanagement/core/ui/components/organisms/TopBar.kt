@@ -1,4 +1,4 @@
-package com.example.taskmanagement.core.ui.components
+package com.example.taskmanagement.core.ui.components.organisms
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.taskmanagement.R
+import com.example.taskmanagement.core.ui.components.atoms.Avatar
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 
 @Composable

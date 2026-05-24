@@ -1,4 +1,4 @@
-package com.example.taskmanagement.core.ui.components
+package com.example.taskmanagement.core.ui.components.organisms
 
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.Box
@@ -27,8 +27,7 @@ class DragAndDropState {
     var dragOffset by mutableStateOf(Offset.Zero)
     var draggableItem by mutableStateOf<Any?>(null)
     var dragPreview: (@Composable () -> Unit)? by mutableStateOf(null)
-    
-    // Almacena los rectángulos de las columnas para saber dónde soltar
+
     private val dropTargets = mutableStateMapOf<String, Rect>()
     private var onDropCallback: ((Any, String) -> Unit)? = null
 

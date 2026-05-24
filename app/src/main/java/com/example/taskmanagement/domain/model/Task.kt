@@ -1,6 +1,6 @@
 package com.example.taskmanagement.domain.model
 
-import com.example.taskmanagement.core.ui.components.TagType
+import com.example.taskmanagement.core.ui.components.atoms.TagType
 
 data class TaskTag(val title: String, val type: TagType)
 

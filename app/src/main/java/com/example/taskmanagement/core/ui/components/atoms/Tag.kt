@@ -1,4 +1,4 @@
-package com.example.taskmanagement.core.ui.components
+package com.example.taskmanagement.core.ui.components.atoms
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

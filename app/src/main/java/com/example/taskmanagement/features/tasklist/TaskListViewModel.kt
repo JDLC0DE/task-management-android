@@ -30,7 +30,6 @@ class TaskListViewModel @Inject constructor(
         viewModelScope.launch {
             state = state.copy(isLoading = true)
             try {
-                // Obtenemos todas las tareas y las agrupamos localmente para mayor eficiencia
                 val working = getTasksUseCase(TaskStatus.TODO)
                 val inProgress = getTasksUseCase(TaskStatus.IN_PROGRESS)
                 val done = getTasksUseCase(TaskStatus.DONE)
@@ -53,7 +52,6 @@ class TaskListViewModel @Inject constructor(
     }
 
     fun onTaskMoved(taskId: String, newStatus: TaskStatus) {
-        // Actualización optimista de la UI
         val currentTasks = state.tasks
         val movedTask = findTaskById(taskId, currentTasks) ?: return
 
@@ -62,12 +60,10 @@ class TaskListViewModel @Inject constructor(
 
         state = state.copy(tasks = finalTasks)
 
-        // Actualización remota
         viewModelScope.launch {
             try {
                 updateTaskUseCase(taskId, newStatus)
             } catch (e: Exception) {
-                // Revertir si hay error
                 loadTasks()
                 state = state.copy(error = "Error al mover tarea: ${e.message}")
             }
