@@ -16,6 +16,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,12 +29,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.taskmanagement.R
-import com.example.taskmanagement.core.ui.components.atoms.InputField
+import com.example.taskmanagement.core.ui.components.InputField
+import com.example.taskmanagement.core.ui.components.DropdownOption
+import com.example.taskmanagement.core.ui.components.EstimateDropdown
 import com.example.taskmanagement.core.ui.theme.TaskManagementTheme
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 
 @Composable
 fun CreateTaskScreen() {
+    // probar estado
+    var state by remember { mutableStateOf<DropdownOption?>(null) }
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = TaskTheme.colors.background,
@@ -78,8 +87,17 @@ fun CreateTaskScreen() {
             }
 
             InputField(value = "", onValueChange = {}, placeholder = "Task Title")
-
-
+            EstimateDropdown(
+                selected = state,
+                options = listOf(
+                    DropdownOption(label = "0 Points", value = "ZERO"),
+                    DropdownOption(label = "1 Points", value = "ONE"),
+                    DropdownOption(label = "2 Points", value = "TWO"),
+                    DropdownOption(label = "4 Points", value = "FOUR"),
+                    DropdownOption(label = "8 Points", value = "EIGHT"),
+                ), onSelect = { currentOption ->
+                    state = currentOption
+                })
         }
     }
 }

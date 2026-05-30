@@ -17,8 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.taskmanagement.R
-import com.example.taskmanagement.core.ui.components.organisms.DragAndDropContainer
-import com.example.taskmanagement.core.ui.components.organisms.TopBar
+import com.example.taskmanagement.core.ui.components.DragAndDropContainer
+import com.example.taskmanagement.core.ui.components.TopBar
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 import com.example.taskmanagement.core.ui.theme.TaskManagementTheme
 import com.example.taskmanagement.domain.model.TaskStatus

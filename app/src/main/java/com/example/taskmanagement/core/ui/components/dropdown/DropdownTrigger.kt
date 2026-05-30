@@ -1,4 +1,4 @@
-package com.example.taskmanagement.core.ui.components.molecules
+package com.example.taskmanagement.core.ui.components.dropdown
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,7 +25,7 @@ import com.example.taskmanagement.R
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 
 @Composable
-fun SelectorLabel(
+fun DropdownTrigger(
     label: String,
     icon: Painter,
     showBackground: Boolean,
@@ -66,7 +66,7 @@ fun SelectorLabel(
 @Composable
 fun SelectorLabelPreview() {
     Box(modifier = Modifier.padding(top = 50.dp)) {
-        SelectorLabel(
+        DropdownTrigger(
             icon = painterResource(R.drawable.ic_point),
             label = "Label",
             showBackground = false,

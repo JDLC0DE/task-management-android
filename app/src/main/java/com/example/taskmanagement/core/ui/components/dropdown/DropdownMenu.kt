@@ -1,4 +1,4 @@
-package com.example.taskmanagement.core.ui.components.molecules
+package com.example.taskmanagement.core.ui.components.dropdown
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box

@@ -24,10 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.taskmanagement.R
-import com.example.taskmanagement.core.ui.components.atoms.Avatar
-import com.example.taskmanagement.core.ui.components.molecules.MoreOptions
-import com.example.taskmanagement.core.ui.components.atoms.Tag
-import com.example.taskmanagement.core.ui.components.atoms.TagType
+import com.example.taskmanagement.core.ui.components.Avatar
+import com.example.taskmanagement.core.ui.components.MoreOptions
+import com.example.taskmanagement.core.ui.components.Tag
+import com.example.taskmanagement.core.ui.components.TagType
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 import com.example.taskmanagement.domain.model.TaskTag
 import java.time.LocalDate

@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.taskmanagement.core.ui.components.organisms.DragTarget
-import com.example.taskmanagement.core.ui.components.organisms.DropTarget
+import com.example.taskmanagement.core.ui.components.DragTarget
+import com.example.taskmanagement.core.ui.components.DropTarget
 import com.example.taskmanagement.domain.model.Task
 
 @Composable

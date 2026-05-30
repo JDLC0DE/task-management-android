@@ -1,10 +1,6 @@
-package com.example.taskmanagement.core.ui.components.molecules
+package com.example.taskmanagement.core.ui.components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -13,30 +9,37 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.taskmanagement.R
+import com.example.taskmanagement.core.ui.components.dropdown.DropdownMenu
+import com.example.taskmanagement.core.ui.components.dropdown.DropdownTrigger
 import com.example.taskmanagement.core.ui.theme.TaskTheme
 
 data class DropdownOption(val label: String, val value: String)
 
-@Composable
-fun EstimateSelector(onSelect: () -> Unit, options: List<DropdownOption>) {
-    var expanded by remember { mutableStateOf(false) }
+const val EstimateLabel = "Estimate"
 
-    SelectorLabel(
-        label = "Estimate",
+@Composable
+fun EstimateDropdown(
+    selected: DropdownOption? = null,
+    onSelect: (currentOption: DropdownOption) -> Unit,
+    options: List<DropdownOption>
+) {
+    var expanded by remember { mutableStateOf(false) }
+    val label = if (selected?.label?.isNotEmpty() == true) { selected.label } else { EstimateLabel }
+    val showBackground = selected == null
+
+    DropdownTrigger(
+        label = label,
         icon = painterResource(R.drawable.ic_point),
-        showBackground = true,
+        showBackground = showBackground,
         onPress = { expanded = true }
     )
 
-    DropdownMenu(expanded = expanded, onClose = { expanded = false }, label = "Estimate") {
+    DropdownMenu(expanded = expanded, onClose = { expanded = false }, label = EstimateLabel) {
         options.forEach { option ->
             DropdownMenuItem(
                 text = {
@@ -56,27 +59,10 @@ fun EstimateSelector(onSelect: () -> Unit, options: List<DropdownOption>) {
                 },
                 contentPadding = PaddingValues(horizontal = 21.dp),
                 onClick = {
-                    onSelect()
+                    onSelect(option)
                     expanded = false
                 }
             )
         }
-    }
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun EstimateSelectorPreview() {
-    Box(modifier = Modifier.fillMaxSize().background(TaskTheme.colors.background).padding(top = 50.dp)) {
-        EstimateSelector(
-            onSelect = {},
-            options = listOf(
-                DropdownOption(label = "0 Points", value = "ZERO"),
-                DropdownOption(label = "1 Points", value = "ONE"),
-                DropdownOption(label = "2 Points", value = "TWO"),
-                DropdownOption(label = "4 Points", value = "FOUR"),
-                DropdownOption(label = "8 Points", value = "EIGHT"),
-            )
-        )
     }
 }

@@ -1,4 +1,4 @@
-package com.example.taskmanagement.core.ui.components.organisms
+package com.example.taskmanagement.core.ui.components
 
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.Box

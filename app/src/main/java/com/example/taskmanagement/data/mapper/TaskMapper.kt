@@ -1,7 +1,7 @@
 package com.example.taskmanagement.data.mapper
 
 import com.example.taskmanagement.core.utils.DateUtils
-import com.example.taskmanagement.core.ui.components.atoms.TagType
+import com.example.taskmanagement.core.ui.components.TagType
 import com.example.taskmanagement.domain.model.Assignee
 import com.example.taskmanagement.domain.model.PointEstimate
 import com.example.taskmanagement.domain.model.Task
